@@ -15,8 +15,7 @@ RUN adduser --disabled-password \
 RUN apt-get update && apt-get install -y git jupyter-client jupyter-notebook && apt-get clean
 RUN pip3 install --upgrade tornado jupyter jupyter_client notebook jupyterlab nbconvert
 
-RUN mkdir -p ${HOME}/JlBox
-COPY . ${HOME}/JlBox
+RUN git clone --depth 1 --branch v1.1 https://github.com/huanglangwen/JlBox.git ${HOME}/JlBox
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
